@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+const App = () => {
+
+  const [ inputValue, setInputValue ] = useState('');
+  const [ factorialValue, setFactorialValue ] = useState('');
+
+  const onChangeHandler = e => {
+    if(/^[0-9]*$/g.test(e.target.value)) {
+      setInputValue(e.target.value)
+    }
+  }
+
+  const factorial = value => {
+    if (value === 0) {
+      return 1
+    }
+    return value * factorial(value - 1)
+  }
+
+  const onSubmitHandler = e => {
+    e.preventDefault();
+
+    if (inputValue !== '') {
+      setFactorialValue(factorial(inputValue))
+    } else {
+      setFactorialValue(0)
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Factorial Calculator</h1>
+      <form onSubmit={onSubmitHandler}>
+        <input type="text" placeholder="Enter a number..." value={inputValue} onChange={onChangeHandler}/>
+        <br />
+        <button type="submit">Calculate Factorial</button>
+      </form>
+      <h2>Factorial: {factorialValue ? factorialValue : 0}</h2>
     </div>
   );
 }
