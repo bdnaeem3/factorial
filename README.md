@@ -1,3 +1,5 @@
+I've made the factorial number of a input number with Recursion.
+
 ## Steps to run this project
 
 - Clone the repository
