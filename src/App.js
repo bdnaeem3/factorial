@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+const style = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '100vh'
+}
+
 const App = () => {
 
   const [ inputValue, setInputValue ] = useState('');
@@ -29,9 +37,9 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div style={style}>
       <h1>Factorial Calculator</h1>
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={onSubmitHandler} style={{textAlign: 'center'}}>
         <input type="text" placeholder="Enter a number..." value={inputValue} onChange={onChangeHandler}/>
         <br />
         <button type="submit">Calculate Factorial</button>
